@@ -7,7 +7,7 @@
                     header="Register"
                     class="text-center"
                 >
-                    <b-form class="text-left">
+                    <b-form class="text-left" @submit.prevent="register">
                         <b-form-group label="Name:">
                             <b-form-input
                                 required
@@ -38,7 +38,6 @@
                         <div class="text-center">
                             <b-button
                                 type="submit"
-                                @click="login"
                                 variant="info"
                                 class="w-50"
                                 size="sm"
@@ -69,7 +68,7 @@ export default {
         }
     },
     methods: {
-        login() {
+        register() {
             EventBus.$emit('showLoading');
             this.$store.dispatch('auth/register', this.payload).then(() => {
                 this.$router.replace({ path: "/login" });

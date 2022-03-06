@@ -7,7 +7,7 @@
                     header="Login"
                     class="text-center"
                 >
-                    <b-form class="text-left">
+                    <b-form class="text-left" @submit.prevent="login">
                         <b-form-group label="Email:">
                             <b-form-input
                                 v-model="payload.email"
@@ -25,7 +25,6 @@
                         <div class="text-center">
                             <b-button
                                 type="submit"
-                                @click="login"
                                 variant="info"
                                 class="w-50"
                                 size="sm"
