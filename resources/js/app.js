@@ -32,7 +32,7 @@
       if (error.response.status === 401 && !originalRequest._retry) {
 
           originalRequest._retry = true;
-          store.dispatch('LogOut')
+          store.dispatch('auth/logOut')
           return router.push('/login')
       }
     }

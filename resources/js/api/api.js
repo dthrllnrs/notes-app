@@ -8,8 +8,10 @@ let api = axios.create({
   baseURL: base_url
 });
 if(vuex !== null) {
-    if(vuex.auth.is_authenticated) {
-        api.defaults.headers.common['Authorization'] = `Bearer: ${auth.active_user.token}`
+    if(vuex.auth !== null) {
+        if(vuex.auth.is_authenticated) {
+            api.defaults.headers.common['Authorization'] = `Bearer: ${auth.active_user.token}`
+        }
     }
 }
 

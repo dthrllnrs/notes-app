@@ -64,6 +64,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -209,6 +214,7 @@ var render = function () {
                         { attrs: { label: "Name:" } },
                         [
                           _c("b-form-input", {
+                            attrs: { required: "" },
                             model: {
                               value: _vm.payload.name,
                               callback: function ($$v) {
@@ -226,7 +232,7 @@ var render = function () {
                         { attrs: { label: "Email:" } },
                         [
                           _c("b-form-input", {
-                            attrs: { type: "email" },
+                            attrs: { required: "", type: "email" },
                             model: {
                               value: _vm.payload.email,
                               callback: function ($$v) {
@@ -244,7 +250,7 @@ var render = function () {
                         { attrs: { label: "Password" } },
                         [
                           _c("b-form-input", {
-                            attrs: { type: "password" },
+                            attrs: { required: "", type: "password" },
                             model: {
                               value: _vm.payload.password,
                               callback: function ($$v) {
@@ -262,7 +268,7 @@ var render = function () {
                         { attrs: { label: "Confirm Password" } },
                         [
                           _c("b-form-input", {
-                            attrs: { type: "password" },
+                            attrs: { required: "", type: "password" },
                             model: {
                               value: _vm.payload.password_confirmation,
                               callback: function ($$v) {
@@ -287,7 +293,11 @@ var render = function () {
                             "b-button",
                             {
                               staticClass: "w-50",
-                              attrs: { variant: "info", size: "sm" },
+                              attrs: {
+                                type: "submit",
+                                variant: "info",
+                                size: "sm",
+                              },
                               on: { click: _vm.login },
                             },
                             [_vm._v("Register")]
