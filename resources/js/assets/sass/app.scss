@@ -1,0 +1,75 @@
+@use "sass:map";
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+// Variables
+@import 'variables';
+
+// Breakpoints
+@import 'res-breakpoints';
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+* {
+    font-family: "Poppins" !important;
+}
+
+body {
+    background-color: #F5F7FB;
+}
+
+.table-card {
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 3px 5px #999;
+    & table {
+        & thead {
+            & tr {
+                & th {
+                    border: 0;
+                    border-bottom: 1px solid rgb(222, 226, 230);
+                    background-color: white !important;
+                    text-align: left;
+                    text-transform: uppercase;
+                    color: map.get($theme-colors, 'dark' ) !important;
+                    font-weight: bold !important;
+                    font-size: 17px;
+                    &.action-header {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        & tbody {
+            & tr {
+                & td {
+                    border: 0;
+                    border-bottom: 1px solid rgb(222, 226, 230);
+                    text-align: left;
+                    font-size: 15px;
+                    color: rgba(0, 0, 0, 0.7);
+                    &.indented {
+                        & .content-wrapper {
+                            text-align: left !important;
+                        }
+                    }
+                    &.action-column {
+                        text-align: right !important;
+                        & .action-link {
+                            border-bottom: 1px solid map.get($theme-colors, 'dark' );
+                            &:hover {
+                                text-decoration: none !important;
+                            }
+                        }
+                        & .btn {
+                            padding: 0 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

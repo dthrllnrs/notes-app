@@ -1,0 +1,30 @@
+.note-card {
+    margin-bottom: 5px;
+
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+        & .delete-btn {
+            display: block;
+        }
+    }
+
+    & .delete-btn {
+        display: none;
+    }
+
+    & > .card-body {
+        max-height: 20vh;
+        & > .card-title {
+            font-size: 1.2em;
+            white-space: nowrap;
+        }
+        & > .note-card-content {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+}
