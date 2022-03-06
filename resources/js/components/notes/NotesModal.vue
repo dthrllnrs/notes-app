@@ -3,7 +3,7 @@
         <update-note v-if="update_note" :note="note"></update-note>
         <view-note v-else :note="note"></view-note>
         <div class="text-right mt-2" v-if="!update_note">
-            <b-button variant="primary" @click="toggleEditMode">Edit</b-button>
+            <b-button variant="info" @click="toggleEditMode">Edit</b-button>
         </div>
     </b-modal>
 </template>
