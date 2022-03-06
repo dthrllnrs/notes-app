@@ -10,29 +10,34 @@
                     <b-form class="text-left">
                         <b-form-group label="Name:">
                             <b-form-input
+                                required
                                 v-model="payload.name"
                             ></b-form-input>
                         </b-form-group>
                         <b-form-group label="Email:">
                             <b-form-input
+                                required
                                 v-model="payload.email"
                                 type="email"
                             ></b-form-input>
                         </b-form-group>
                         <b-form-group label="Password">
                             <b-form-input
+                                required
                                 v-model="payload.password"
                                 type="password"
                             ></b-form-input>
                         </b-form-group>
                         <b-form-group label="Confirm Password">
                             <b-form-input
+                                required
                                 v-model="payload.password_confirmation"
                                 type="password"
                             ></b-form-input>
                         </b-form-group>
                         <div class="text-center">
                             <b-button
+                                type="submit"
                                 @click="login"
                                 variant="info"
                                 class="w-50"

@@ -11,17 +11,20 @@
                         <b-form-group label="Email:">
                             <b-form-input
                                 v-model="payload.email"
+                                required
                                 type="email"
                             ></b-form-input>
                         </b-form-group>
                         <b-form-group label="Password">
                             <b-form-input
                                 v-model="payload.password"
+                                required
                                 type="password"
                             ></b-form-input>
                         </b-form-group>
                         <div class="text-center">
                             <b-button
+                                type="submit"
                                 @click="login"
                                 variant="info"
                                 class="w-50"
