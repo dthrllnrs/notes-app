@@ -10,7 +10,7 @@ let api = axios.create({
 if(vuex !== null) {
     if(vuex.auth !== null) {
         if(vuex.auth.is_authenticated) {
-            api.defaults.headers.common['Authorization'] = `Bearer: ${auth.active_user.token}`
+            api.defaults.headers.common['Authorization'] = `Bearer: ${vuex.auth.active_user.token}`
         }
     }
 }
