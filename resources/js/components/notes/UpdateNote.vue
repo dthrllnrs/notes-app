@@ -7,7 +7,7 @@
             <b-form-textarea placeholder="Enter note content here" required v-model="payload.content" rows="3" max-rows="6"></b-form-textarea>
         </b-form-group>
         <div class="text-right">
-            <b-button type="submit" variant="primary">Save</b-button>
+            <b-button type="submit" variant="info">Save</b-button>
         </div>
     </b-form>
 </template>
