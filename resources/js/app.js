@@ -43,20 +43,6 @@ Vue.use(BVToastPlugin);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 
-Vue.component()
-
-window.axios.interceptors.response.use(undefined, function (error) {
-    if (error) {
-        const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
-
-            originalRequest._retry = true;
-            store.dispatch('auth/logOut')
-            return router.push('/login')
-        }
-    }
-})
-
 new Vue({
     router,
     store,
