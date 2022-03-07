@@ -38,9 +38,13 @@ export default {
         notes: state => state.notes.notes
     }),
     created() {
+        this.clearNotes();
         this.fetchNotes();
     },
     methods: {
+        clearNotes() {
+            this.$store.dispatch('notes/clearNotes');
+        },
         fetchNotes() {
             EventBus.$emit('showLoading');
             this.$store.dispatch('notes/fetchNotes').catch(err => {

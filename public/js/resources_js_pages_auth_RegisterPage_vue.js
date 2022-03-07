@@ -109,8 +109,13 @@ __webpack_require__.r(__webpack_exports__);
 
       _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('showLoading');
       this.$store.dispatch('auth/register', this.payload).then(function () {
-        _this.$router.replace({
-          path: "/login"
+        _this.$store.dispatch('auth/login', {
+          email: _this.payload.email,
+          password: _this.payload.password
+        }).then(function (res) {
+          _this.$router.replace({
+            path: "/"
+          });
         });
       })["catch"](function (err) {
         _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('hideLoading');

@@ -95,7 +95,12 @@ export default {
         register() {
             EventBus.$emit('showLoading');
             this.$store.dispatch('auth/register', this.payload).then(() => {
-                this.$router.replace({ path: "/login" });
+                this.$store.dispatch('auth/login', {
+                    email: this.payload.email,
+                    password: this.payload.password
+                }).then(res => {
+                    this.$router.replace({ path: "/" });
+                })
             }).catch(err => {
                 EventBus.$emit('hideLoading');
                 console.log(err);

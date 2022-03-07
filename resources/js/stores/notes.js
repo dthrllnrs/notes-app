@@ -15,9 +15,18 @@ const notes_store = {
                 state.notes.push(new Note(note));
             });
         },
+        clearNotes(state) {
+            state.notes = [];
+        }
     },
 
     actions: {
+        async clearNotes(context) {
+            return new Promise((resolve, reject) => {
+                context.commit('clearNotes');
+                resolve(1);
+            })
+        },
         async fetchNotes(context) {
             return new Promise((resolve, reject) => {
                 api.get('/notes').then(res => {

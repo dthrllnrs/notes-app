@@ -320,20 +320,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               switch (_context.prev = _context.next) {
                 case 0:
                   _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('hideLoading');
-
-                  _this.$bvToast.toast('Note Updated', {
+                  _context.next = 3;
+                  return _this.$bvToast.toast('Note Updated', {
                     title: "Success",
                     variant: "success",
                     solid: true
                   });
 
-                  _context.next = 4;
+                case 3:
+                  _context.next = 5;
                   return _this.$store.dispatch('notes/fetchNotes');
 
-                case 4:
+                case 5:
                   _this.$bvModal.hide("view-note-modal");
 
-                case 5:
+                case 6:
                 case "end":
                   return _context.stop();
               }
@@ -439,9 +440,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   }),
   created: function created() {
+    this.clearNotes();
     this.fetchNotes();
   },
   methods: {
+    clearNotes: function clearNotes() {
+      this.$store.dispatch('notes/clearNotes');
+    },
     fetchNotes: function fetchNotes() {
       var _this = this;
 

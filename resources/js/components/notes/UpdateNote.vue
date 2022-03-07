@@ -39,7 +39,7 @@ export default {
             EventBus.$emit('showLoading');
             this.$store.dispatch('notes/update', this.payload).then(async (res) => {
                 EventBus.$emit('hideLoading');
-                this.$bvToast.toast('Note Updated', {
+                await this.$bvToast.toast('Note Updated', {
                     title: "Success",
                     variant: "success",
                     solid: true,
