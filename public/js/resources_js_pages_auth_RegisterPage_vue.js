@@ -236,7 +236,17 @@ var render = function () {
         [
           _c(
             "b-col",
-            { attrs: { cols: "12", md: "4", "offset-md": "8" } },
+            {
+              attrs: {
+                cols: "12",
+                sm: "7",
+                "offset-sm": "5",
+                md: "6",
+                "offset-md": "6",
+                lg: "4",
+                "offset-lg": "8",
+              },
+            },
             [
               _c(
                 "b-card",

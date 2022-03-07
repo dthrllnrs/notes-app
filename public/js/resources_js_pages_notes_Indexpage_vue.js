@@ -1190,7 +1190,6 @@ var render = function () {
                         key: "default",
                         fn: function (ref) {
                           var errors = ref.errors
-                          var touched = ref.touched
                           var valid = ref.valid
                           return [
                             _c(
@@ -1201,7 +1200,7 @@ var render = function () {
                                   attrs: {
                                     autofocus: "",
                                     placeholder: "Enter note title here",
-                                    state: touched ? valid : null,
+                                    state: valid,
                                   },
                                   model: {
                                     value: _vm.payload.title,
@@ -1235,7 +1234,6 @@ var render = function () {
                         key: "default",
                         fn: function (ref) {
                           var errors = ref.errors
-                          var touched = ref.touched
                           var valid = ref.valid
                           return [
                             _c(
@@ -1248,7 +1246,7 @@ var render = function () {
                                     required: "",
                                     rows: "3",
                                     "max-rows": "6",
-                                    state: touched ? valid : null,
+                                    state: valid,
                                   },
                                   model: {
                                     value: _vm.payload.content,
