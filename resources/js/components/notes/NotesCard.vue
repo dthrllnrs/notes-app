@@ -1,5 +1,5 @@
 <template>
-    <b-card :title="note.title" class="note-card" @click="handleClick">
+    <b-card :title="note.title || 'Untitled Note'" class="note-card" @click="handleClick">
         <b-button variant="outline-danger" class="float-right delete-btn" size="sm" @click="handleDeleteClick"><b-icon-trash></b-icon-trash></b-button>
         <b-card-text class="note-card-content">{{note.content}}</b-card-text>
     </b-card>

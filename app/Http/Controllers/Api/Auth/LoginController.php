@@ -24,11 +24,11 @@ class LoginController extends Controller
 
         $title = 'User Login';
 
+        $validated = $request->validate([
+            'email'     => 'required|email',
+            'password'  => 'required',
+        ]);
         try {
-            $validated = $request->validate([
-                'email'     => 'required|email',
-                'password'  => 'required',
-            ]);
 
             if (!Auth::attempt($validated)) throw new \Exception('Invalid login credentials');
 

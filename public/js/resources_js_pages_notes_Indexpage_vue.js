@@ -36,6 +36,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -46,12 +54,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  mounted: function mounted() {
+    var self = this;
+    this.$root.$on('bv::modal::show', function (bvEvent, modalId) {
+      self.resetForm();
+    });
+  },
   methods: {
     resetForm: function resetForm() {
       this.payload.title = '';
       this.payload.content = '';
     },
-    handleSubmit: function handleSubmit() {
+    onSubmit: function onSubmit() {
       var _this = this;
 
       _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('showLoading');
@@ -90,13 +104,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }())["catch"](function (err) {
         _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('hideLoading');
 
-        _this.$bvToast.toast(err.message || 'Error Please try again later.', {
-          title: "Time In Failed",
+        if (err.status == 422) {
+          _this.$refs.form.setErrors(err.data.errors);
+        }
+
+        _this.$bvToast.toast(err.data.message || 'Error Please try again later.', {
+          title: "Add Note Failed",
           variant: "danger",
           solid: true
         });
       });
     }
+  },
+  destroyed: function destroyed() {
+    this.resetForm();
   }
 });
 
@@ -267,6 +288,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['note'],
@@ -280,7 +309,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    handleSubmit: function handleSubmit() {
+    onSubmit: function onSubmit() {
       var _this = this;
 
       _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('showLoading');
@@ -318,8 +347,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }())["catch"](function (err) {
         _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('hideLoading');
 
-        _this.$bvToast.toast(err.message || 'Error Please try again later.', {
-          title: "Time In Failed",
+        if (err.status == 422) {
+          _this.$refs.form.setErrors(err.data.errors);
+        }
+
+        _this.$bvToast.toast(err.data.message || 'Error Please try again later.', {
+          title: "Update Note Failed",
           variant: "danger",
           solid: true
         });
@@ -864,71 +897,141 @@ var render = function () {
     "b-modal",
     { attrs: { id: "add-note-modal", title: "Add Note", "hide-footer": "" } },
     [
-      _c(
-        "b-form",
-        {
-          on: {
-            submit: function ($event) {
-              $event.preventDefault()
-              return _vm.handleSubmit.apply(null, arguments)
+      _c("validation-observer", {
+        ref: "form",
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function (ref) {
+              var handleSubmit = ref.handleSubmit
+              return [
+                _c(
+                  "b-form",
+                  {
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return handleSubmit(_vm.onSubmit)
+                      },
+                    },
+                  },
+                  [
+                    _c("validation-provider", {
+                      attrs: { name: "Title", vid: "title", rules: "max:20" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "default",
+                            fn: function (ref) {
+                              var errors = ref.errors
+                              var valid = ref.valid
+                              var dirty = ref.dirty
+                              return [
+                                _c(
+                                  "b-form-group",
+                                  { attrs: { label: "Title " } },
+                                  [
+                                    _c("b-form-input", {
+                                      attrs: {
+                                        autofocus: "",
+                                        placeholder: "Enter note title here",
+                                        state: dirty ? valid : null,
+                                      },
+                                      model: {
+                                        value: _vm.payload.title,
+                                        callback: function ($$v) {
+                                          _vm.$set(_vm.payload, "title", $$v)
+                                        },
+                                        expression: "payload.title",
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("b-form-invalid-feedback", [
+                                      _vm._v(_vm._s(errors[0])),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                              ]
+                            },
+                          },
+                        ],
+                        null,
+                        true
+                      ),
+                    }),
+                    _vm._v(" "),
+                    _c("validation-provider", {
+                      attrs: {
+                        name: "Content",
+                        vid: "content",
+                        rules: "required",
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "default",
+                            fn: function (ref) {
+                              var errors = ref.errors
+                              var valid = ref.valid
+                              var dirty = ref.dirty
+                              return [
+                                _c(
+                                  "b-form-group",
+                                  { attrs: { label: "Content *" } },
+                                  [
+                                    _c("b-form-textarea", {
+                                      attrs: {
+                                        placeholder: "Enter note content here",
+                                        required: "",
+                                        rows: "3",
+                                        "max-rows": "6",
+                                        state: dirty ? valid : null,
+                                      },
+                                      model: {
+                                        value: _vm.payload.content,
+                                        callback: function ($$v) {
+                                          _vm.$set(_vm.payload, "content", $$v)
+                                        },
+                                        expression: "payload.content",
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("b-form-invalid-feedback", [
+                                      _vm._v(_vm._s(errors[0])),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                              ]
+                            },
+                          },
+                        ],
+                        null,
+                        true
+                      ),
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "text-right" },
+                      [
+                        _c(
+                          "b-button",
+                          { attrs: { type: "submit", variant: "info" } },
+                          [_vm._v("Save")]
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ]
             },
           },
-        },
-        [
-          _c(
-            "b-form-group",
-            { attrs: { label: "Title" } },
-            [
-              _c("b-form-input", {
-                model: {
-                  value: _vm.payload.title,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.payload, "title", $$v)
-                  },
-                  expression: "payload.title",
-                },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-form-group",
-            { attrs: { label: "Content" } },
-            [
-              _c("b-form-textarea", {
-                attrs: {
-                  placeholder: "Enter note content here",
-                  rows: "3",
-                  "max-rows": "6",
-                },
-                model: {
-                  value: _vm.payload.content,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.payload, "content", $$v)
-                  },
-                  expression: "payload.content",
-                },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-right" },
-            [
-              _c(
-                "b-button",
-                { attrs: { type: "submit", variant: "primary" } },
-                [_vm._v("Save")]
-              ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
+        ]),
+      }),
     ],
     1
   )
@@ -959,7 +1062,7 @@ var render = function () {
     "b-card",
     {
       staticClass: "note-card",
-      attrs: { title: _vm.note.title },
+      attrs: { title: _vm.note.title || "Untitled Note" },
       on: { click: _vm.handleClick },
     },
     [
@@ -1008,7 +1111,7 @@ var render = function () {
     {
       attrs: {
         id: "view-note-modal",
-        title: _vm.note.title,
+        title: _vm.note.title || "Untitled Note",
         "hide-footer": "",
       },
     },
@@ -1025,7 +1128,7 @@ var render = function () {
               _c(
                 "b-button",
                 {
-                  attrs: { variant: "primary" },
+                  attrs: { variant: "info" },
                   on: { click: _vm.toggleEditMode },
                 },
                 [_vm._v("Edit")]
@@ -1060,69 +1163,137 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "b-form",
-    {
-      on: {
-        submit: function ($event) {
-          $event.preventDefault()
-          return _vm.handleSubmit.apply(null, arguments)
+  return _c("validation-observer", {
+    ref: "form",
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function (ref) {
+          var handleSubmit = ref.handleSubmit
+          return [
+            _c(
+              "b-form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return handleSubmit(_vm.onSubmit)
+                  },
+                },
+              },
+              [
+                _c("validation-provider", {
+                  attrs: { name: "Title", vid: "title", rules: "max:20" },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var errors = ref.errors
+                          var valid = ref.valid
+                          var dirty = ref.dirty
+                          return [
+                            _c(
+                              "b-form-group",
+                              { attrs: { label: "Title" } },
+                              [
+                                _c("b-form-input", {
+                                  attrs: {
+                                    autofocus: "",
+                                    placeholder: "Enter note title here",
+                                    state: dirty ? valid : null,
+                                  },
+                                  model: {
+                                    value: _vm.payload.title,
+                                    callback: function ($$v) {
+                                      _vm.$set(_vm.payload, "title", $$v)
+                                    },
+                                    expression: "payload.title",
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c("b-form-invalid-feedback", [
+                                  _vm._v(_vm._s(errors[0])),
+                                ]),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ],
+                    null,
+                    true
+                  ),
+                }),
+                _vm._v(" "),
+                _c("validation-provider", {
+                  attrs: { name: "Content", vid: "content", rules: "required" },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var errors = ref.errors
+                          var valid = ref.valid
+                          var dirty = ref.dirty
+                          return [
+                            _c(
+                              "b-form-group",
+                              { attrs: { label: "Content *" } },
+                              [
+                                _c("b-form-textarea", {
+                                  attrs: {
+                                    placeholder: "Enter note content here",
+                                    required: "",
+                                    rows: "3",
+                                    "max-rows": "6",
+                                    state: dirty ? valid : null,
+                                  },
+                                  model: {
+                                    value: _vm.payload.content,
+                                    callback: function ($$v) {
+                                      _vm.$set(_vm.payload, "content", $$v)
+                                    },
+                                    expression: "payload.content",
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _c("b-form-invalid-feedback", [
+                                  _vm._v(_vm._s(errors[0])),
+                                ]),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ],
+                    null,
+                    true
+                  ),
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "text-right" },
+                  [
+                    _c(
+                      "b-button",
+                      { attrs: { type: "submit", variant: "info" } },
+                      [_vm._v("Save")]
+                    ),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ]
         },
       },
-    },
-    [
-      _c(
-        "b-form-group",
-        { attrs: { label: "Title" } },
-        [
-          _c("b-form-input", {
-            model: {
-              value: _vm.payload.title,
-              callback: function ($$v) {
-                _vm.$set(_vm.payload, "title", $$v)
-              },
-              expression: "payload.title",
-            },
-          }),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Content" } },
-        [
-          _c("b-form-textarea", {
-            attrs: {
-              placeholder: "Enter note content here",
-              rows: "3",
-              "max-rows": "6",
-            },
-            model: {
-              value: _vm.payload.content,
-              callback: function ($$v) {
-                _vm.$set(_vm.payload, "content", $$v)
-              },
-              expression: "payload.content",
-            },
-          }),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-right" },
-        [
-          _c("b-button", { attrs: { type: "submit", variant: "primary" } }, [
-            _vm._v("Save"),
-          ]),
-        ],
-        1
-      ),
-    ],
-    1
-  )
+    ]),
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

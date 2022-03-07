@@ -4,42 +4,61 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
- require('./bootstrap');
+require('./bootstrap');
 
- import Vue from "vue";
- import VueRouter from "vue-router";
- import RouterPrefetch from 'vue-router-prefetch';
- import { BootstrapVue, IconsPlugin, ModalPlugin, BVToastPlugin } from 'bootstrap-vue'
- import App from "./template/App";
- import router from "./routes";
- import store from './stores/store';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import RouterPrefetch from 'vue-router-prefetch';
+import { BootstrapVue, IconsPlugin, ModalPlugin, BVToastPlugin } from 'bootstrap-vue'
+import App from "./template/App";
+import router from "./routes";
+import store from './stores/store';
+import {
+    ValidationObserver,
+    ValidationProvider,
+    extend,
+    localize
+} from "vee-validate";
+import en from "vee-validate/dist/locale/en.json";
+import * as rules from "vee-validate/dist/rules";
+// general styling
+import './assets/sass/app.scss';
 
- // general styling
- import './assets/sass/app.scss';
+// Install VeeValidate rules and localization
+Object.keys(rules).forEach(rule => {
+    extend(rule, rules[rule]);
+});
 
+localize("en", en);
 
- Vue.use(BootstrapVue)
- // BootstrapVue plugins
- Vue.use(IconsPlugin)
- Vue.use(ModalPlugin)
- Vue.use(BVToastPlugin)
- Vue.use(VueRouter);
- Vue.use(RouterPrefetch);
+// Install VeeValidate components globally
+Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
 
- axios.interceptors.response.use(undefined, function (error) {
+Vue.use(BootstrapVue);
+// BootstrapVue plugins
+Vue.use(IconsPlugin);
+Vue.use(ModalPlugin);
+Vue.use(BVToastPlugin);
+Vue.use(VueRouter);
+Vue.use(RouterPrefetch);
+
+Vue.component()
+
+window.axios.interceptors.response.use(undefined, function (error) {
     if (error) {
-      const originalRequest = error.config;
-      if (error.response.status === 401 && !originalRequest._retry) {
+        const originalRequest = error.config;
+        if (error.response.status === 401 && !originalRequest._retry) {
 
-          originalRequest._retry = true;
-          store.dispatch('auth/logOut')
-          return router.push('/login')
-      }
+            originalRequest._retry = true;
+            store.dispatch('auth/logOut')
+            return router.push('/login')
+        }
     }
-  })
+})
 
- new Vue({
-     router,
-     store,
-     render: h => h(App),
- }).$mount("#app");
+new Vue({
+    router,
+    store,
+    render: h => h(App),
+}).$mount("#app");

@@ -33,12 +33,13 @@ class NotesController extends Controller
 
         $title = 'Create Note';
 
+        $validated = $request->validate([
+            'title'     => 'sometimes|max:20',
+            'content'   => 'required'
+        ]);
+
         try {
 
-            $validated = $request->validate([
-                'title'     => 'sometimes',
-                'content'   => 'required'
-            ]);
 
             $this->notesRepository->create($validated, $request->user());
 
@@ -59,13 +60,12 @@ class NotesController extends Controller
     public function update(Request $request, Note $note) {
         $title = 'Update Note';
 
+        $validated = $request->validate([
+            'title'     => 'sometimes|max:20',
+            'content'   => 'required'
+        ]);
+
         try {
-
-            $validated = $request->validate([
-                'title'     => 'sometimes',
-                'content'   => 'required'
-            ]);
-
             if($note->owner_id != $request->user()->id) throw('Note is not owned by the user.');
 
             $this->notesRepository->update($validated, $note);

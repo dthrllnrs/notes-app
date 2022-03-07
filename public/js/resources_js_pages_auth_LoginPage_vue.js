@@ -56,6 +56,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -76,7 +86,17 @@ __webpack_require__.r(__webpack_exports__);
           path: "/"
         });
       })["catch"](function (err) {
-        console.log(err);
+        _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('hideLoading');
+
+        if (err.status == 422) {
+          _this.$refs.form.setErrors(err.data.errors);
+        }
+
+        _this.$bvToast.toast(err.data.message || 'Error Please try again later.', {
+          title: "Login Failed",
+          variant: "danger",
+          solid: true
+        });
       })["finally"](function () {
         _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('hideLoading');
       });
@@ -175,13 +195,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container-fluid" },
     [
       _c(
         "b-row",
         [
           _c(
             "b-col",
-            { attrs: { cols: "12", md: "4" } },
+            { attrs: { cols: "12", md: "4", "offset-md": "8" } },
             [
               _c(
                 "b-card",
@@ -190,69 +211,162 @@ var render = function () {
                   attrs: { "bg-variant": "light", header: "Login" },
                 },
                 [
-                  _c(
-                    "b-form",
-                    { staticClass: "text-left" },
-                    [
-                      _c(
-                        "b-form-group",
-                        { attrs: { label: "Email:" } },
-                        [
-                          _c("b-form-input", {
-                            attrs: { required: "", type: "email" },
-                            model: {
-                              value: _vm.payload.email,
-                              callback: function ($$v) {
-                                _vm.$set(_vm.payload, "email", $$v)
+                  _c("validation-observer", {
+                    ref: "form",
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var handleSubmit = ref.handleSubmit
+                          return [
+                            _c(
+                              "b-form",
+                              {
+                                staticClass: "text-left",
+                                on: {
+                                  submit: function ($event) {
+                                    $event.preventDefault()
+                                    return handleSubmit(_vm.login)
+                                  },
+                                },
                               },
-                              expression: "payload.email",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { label: "Password" } },
-                        [
-                          _c("b-form-input", {
-                            attrs: { required: "", type: "password" },
-                            model: {
-                              value: _vm.payload.password,
-                              callback: function ($$v) {
-                                _vm.$set(_vm.payload, "password", $$v)
-                              },
-                              expression: "payload.password",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "text-center" },
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              staticClass: "w-50",
-                              attrs: {
-                                type: "submit",
-                                variant: "info",
-                                size: "sm",
-                              },
-                              on: { click: _vm.login },
-                            },
-                            [_vm._v("Login")]
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
+                              [
+                                _c("validation-provider", {
+                                  attrs: {
+                                    name: "Email",
+                                    rules: "required|email",
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "default",
+                                        fn: function (ref) {
+                                          var errors = ref.errors
+                                          var valid = ref.valid
+                                          var dirty = ref.dirty
+                                          return [
+                                            _c(
+                                              "b-form-group",
+                                              { attrs: { label: "Email *" } },
+                                              [
+                                                _c("b-form-input", {
+                                                  attrs: {
+                                                    required: "",
+                                                    type: "email",
+                                                    autofocus: "",
+                                                    state: dirty ? valid : null,
+                                                  },
+                                                  model: {
+                                                    value: _vm.payload.email,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.payload,
+                                                        "email",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "payload.email",
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c("b-form-invalid-feedback", [
+                                                  _vm._v(_vm._s(errors[0])),
+                                                ]),
+                                              ],
+                                              1
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                    ],
+                                    null,
+                                    true
+                                  ),
+                                }),
+                                _vm._v(" "),
+                                _c("validation-provider", {
+                                  attrs: {
+                                    name: "Password",
+                                    rules: "required",
+                                    vid: "password",
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "default",
+                                        fn: function (ref) {
+                                          var errors = ref.errors
+                                          var valid = ref.valid
+                                          var dirty = ref.dirty
+                                          return [
+                                            _c(
+                                              "b-form-group",
+                                              {
+                                                attrs: { label: "Password *" },
+                                              },
+                                              [
+                                                _c("b-form-input", {
+                                                  attrs: {
+                                                    required: "",
+                                                    type: "password",
+                                                    state: dirty ? valid : null,
+                                                  },
+                                                  model: {
+                                                    value: _vm.payload.password,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.payload,
+                                                        "password",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "payload.password",
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c("b-form-invalid-feedback", [
+                                                  _vm._v(_vm._s(errors[0])),
+                                                ]),
+                                              ],
+                                              1
+                                            ),
+                                          ]
+                                        },
+                                      },
+                                    ],
+                                    null,
+                                    true
+                                  ),
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "text-center" },
+                                  [
+                                    _c(
+                                      "b-button",
+                                      {
+                                        staticClass: "w-50",
+                                        attrs: {
+                                          type: "submit",
+                                          variant: "info",
+                                          size: "sm",
+                                        },
+                                      },
+                                      [_vm._v("Login")]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
                   _vm._v(" "),
                   _c(
                     "div",

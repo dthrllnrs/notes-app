@@ -1,5 +1,5 @@
 <template>
-    <b-modal id="view-note-modal" :title="note.title" hide-footer>
+    <b-modal id="view-note-modal" :title="note.title || 'Untitled Note'" hide-footer>
         <update-note v-if="update_note" :note="note"></update-note>
         <view-note v-else :note="note"></view-note>
         <div class="text-right mt-2" v-if="!update_note">
