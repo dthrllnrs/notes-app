@@ -23,6 +23,7 @@ api.interceptors.response.use(undefined, function (error) {
         if (error.response.status === 401 && !originalRequest._retry) {
 
             originalRequest._retry = true;
+            localStorage.removeItem('vuex');
             window.location.href = `${app_url}/login`;
         }
     }

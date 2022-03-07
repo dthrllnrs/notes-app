@@ -1357,7 +1357,10 @@ var render = function () {
                 "b-form-group",
                 [
                   _c("b-form-input", {
-                    attrs: { placeholder: "Click here to add note" },
+                    attrs: {
+                      readonly: "",
+                      placeholder: "Click here to add note",
+                    },
                     on: { click: _vm.addNote },
                   }),
                 ],
