@@ -2,15 +2,15 @@
     <b-modal id="add-note-modal" title="Add Note" hide-footer>
         <validation-observer ref="form" v-slot="{ handleSubmit }">
             <b-form @submit.prevent="handleSubmit(onSubmit)">
-                <validation-provider name="Title" vid="title" rules="max:20" v-slot="{errors, valid, dirty}">
+                <validation-provider name="Title" vid="title" rules="max:20" v-slot="{errors, valid, touched}">
                     <b-form-group label="Title ">
-                        <b-form-input v-model="payload.title" autofocus placeholder="Enter note title here" :state="dirty ? valid : null"></b-form-input>
+                        <b-form-input v-model="payload.title" autofocus placeholder="Enter note title here" :state="touched ? valid : null"></b-form-input>
                         <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                     </b-form-group>
                 </validation-provider>
-                <validation-provider name="Content" vid="content" rules="required" v-slot="{errors, valid, dirty}">
+                <validation-provider name="Content" vid="content" rules="required" v-slot="{errors, valid, touched}">
                     <b-form-group label="Content *">
-                        <b-form-textarea placeholder="Enter note content here" required v-model="payload.content" rows="3" max-rows="6" :state="dirty ? valid : null"></b-form-textarea>
+                        <b-form-textarea placeholder="Enter note content here" required v-model="payload.content" rows="3" max-rows="6" :state="touched ? valid : null"></b-form-textarea>
                         <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                     </b-form-group>
                 </validation-provider>

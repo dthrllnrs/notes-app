@@ -279,7 +279,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var dirty = ref.dirty
+                                          var touched = ref.touched
                                           return [
                                             _c(
                                               "b-form-group",
@@ -290,7 +290,9 @@ var render = function () {
                                                     id: "reg-name",
                                                     autofocus: "",
                                                     required: "",
-                                                    state: dirty ? valid : null,
+                                                    state: touched
+                                                      ? valid
+                                                      : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.name,
@@ -339,7 +341,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var dirty = ref.dirty
+                                          var touched = ref.touched
                                           return [
                                             _c(
                                               "b-form-group",
@@ -350,7 +352,9 @@ var render = function () {
                                                     id: "reg-email",
                                                     type: "email",
                                                     required: "",
-                                                    state: dirty ? valid : null,
+                                                    state: touched
+                                                      ? valid
+                                                      : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.email,
@@ -400,7 +404,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var dirty = ref.dirty
+                                          var touched = ref.touched
                                           return [
                                             _c(
                                               "b-form-group",
@@ -413,7 +417,9 @@ var render = function () {
                                                     id: "reg-password",
                                                     type: "password",
                                                     required: "",
-                                                    state: dirty ? valid : null,
+                                                    state: touched
+                                                      ? valid
+                                                      : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.password,
@@ -463,7 +469,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var dirty = ref.dirty
+                                          var touched = ref.touched
                                           return [
                                             _c(
                                               "b-form-group",
@@ -478,7 +484,9 @@ var render = function () {
                                                     id: "reg-password-confirmation",
                                                     type: "password",
                                                     required: "",
-                                                    state: dirty ? valid : null,
+                                                    state: touched
+                                                      ? valid
+                                                      : null,
                                                   },
                                                   model: {
                                                     value:

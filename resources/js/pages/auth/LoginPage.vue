@@ -9,25 +9,25 @@
                 >
                     <validation-observer ref="form" v-slot="{ handleSubmit }">
                         <b-form class="text-left" @submit.prevent="handleSubmit(login)">
-                            <validation-provider name="Email" rules="required|email" v-slot="{errors, valid, dirty}">
+                            <validation-provider name="Email" rules="required|email" v-slot="{errors, valid, touched}">
                                 <b-form-group label="Email *">
                                     <b-form-input
                                         v-model="payload.email"
                                         required
                                         type="email"
                                         autofocus
-                                        :state="dirty ? valid : null"
+                                        :state="touched ? valid : null"
                                     ></b-form-input>
                                     <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                                 </b-form-group>
                             </validation-provider>
-                            <validation-provider name="Password" rules="required" vid="password" v-slot="{errors, valid, dirty}">
+                            <validation-provider name="Password" rules="required" vid="password" v-slot="{errors, valid, touched}">
                                 <b-form-group label="Password *">
                                     <b-form-input
                                         v-model="payload.password"
                                         required
                                         type="password"
-                                        :state="dirty ? valid : null"
+                                        :state="touched ? valid : null"
                                     ></b-form-input>
                                     <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                                 </b-form-group>

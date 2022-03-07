@@ -925,7 +925,7 @@ var render = function () {
                             fn: function (ref) {
                               var errors = ref.errors
                               var valid = ref.valid
-                              var dirty = ref.dirty
+                              var touched = ref.touched
                               return [
                                 _c(
                                   "b-form-group",
@@ -935,7 +935,7 @@ var render = function () {
                                       attrs: {
                                         autofocus: "",
                                         placeholder: "Enter note title here",
-                                        state: dirty ? valid : null,
+                                        state: touched ? valid : null,
                                       },
                                       model: {
                                         value: _vm.payload.title,
@@ -974,7 +974,7 @@ var render = function () {
                             fn: function (ref) {
                               var errors = ref.errors
                               var valid = ref.valid
-                              var dirty = ref.dirty
+                              var touched = ref.touched
                               return [
                                 _c(
                                   "b-form-group",
@@ -986,7 +986,7 @@ var render = function () {
                                         required: "",
                                         rows: "3",
                                         "max-rows": "6",
-                                        state: dirty ? valid : null,
+                                        state: touched ? valid : null,
                                       },
                                       model: {
                                         value: _vm.payload.content,
@@ -1190,6 +1190,7 @@ var render = function () {
                         key: "default",
                         fn: function (ref) {
                           var errors = ref.errors
+                          var touched = ref.touched
                           var valid = ref.valid
                           return [
                             _c(
@@ -1200,7 +1201,7 @@ var render = function () {
                                   attrs: {
                                     autofocus: "",
                                     placeholder: "Enter note title here",
-                                    state: valid,
+                                    state: touched ? valid : null,
                                   },
                                   model: {
                                     value: _vm.payload.title,
@@ -1234,6 +1235,7 @@ var render = function () {
                         key: "default",
                         fn: function (ref) {
                           var errors = ref.errors
+                          var touched = ref.touched
                           var valid = ref.valid
                           return [
                             _c(
@@ -1246,7 +1248,7 @@ var render = function () {
                                     required: "",
                                     rows: "3",
                                     "max-rows": "6",
-                                    state: valid,
+                                    state: touched ? valid : null,
                                   },
                                   model: {
                                     value: _vm.payload.content,

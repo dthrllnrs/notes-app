@@ -9,50 +9,50 @@
                 >
                 <validation-observer ref="form" v-slot="{ handleSubmit }">
                     <b-form class="text-left" @submit.stop.prevent="handleSubmit(register)">
-                        <validation-provider name="Name" vid="name" rules="required" v-slot="{errors, valid, dirty}">
+                        <validation-provider name="Name" vid="name" rules="required" v-slot="{errors, valid, touched}">
                             <b-form-group label="Name *">
                                 <b-form-input
                                     id="reg-name"
                                     autofocus
                                     required
                                     v-model="payload.name"
-                                    :state="dirty ? valid : null"
+                                    :state="touched ? valid : null"
                                 ></b-form-input>
                                 <b-form-invalid-feedback id="reg-name-live-feedback">{{ errors[0] }}</b-form-invalid-feedback>
                             </b-form-group>
                         </validation-provider>
-                        <validation-provider name="Email" vid="email" rules="required|email" v-slot="{errors, valid, dirty}">
+                        <validation-provider name="Email" vid="email" rules="required|email" v-slot="{errors, valid, touched}">
                             <b-form-group label="Email *">
                                 <b-form-input
                                     id="reg-email"
                                     type="email"
                                     required
                                     v-model="payload.email"
-                                    :state="dirty ? valid : null"
+                                    :state="touched ? valid : null"
                                 ></b-form-input>
                                 <b-form-invalid-feedback id="reg-email-live-feedback">{{ errors[0] }}</b-form-invalid-feedback>
                             </b-form-group>
                         </validation-provider>
-                        <validation-provider name="Password" rules="required|min:8|confirmed:password_confirmation" vid="password" v-slot="{errors, valid, dirty}">
+                        <validation-provider name="Password" rules="required|min:8|confirmed:password_confirmation" vid="password" v-slot="{errors, valid, touched}">
                             <b-form-group label="Password *">
                                 <b-form-input
                                     id="reg-password"
                                     type="password"
                                     required
                                     v-model="payload.password"
-                                    :state="dirty ? valid : null"
+                                    :state="touched ? valid : null"
                                 ></b-form-input>
                                 <b-form-invalid-feedback id="reg-password-live-feedback">{{ errors[0] }}</b-form-invalid-feedback>
                             </b-form-group>
                         </validation-provider>
-                        <validation-provider name="Password Confirmation" rules="required" vid="password_confirmation" v-slot="{errors, valid, dirty}">
+                        <validation-provider name="Password Confirmation" rules="required" vid="password_confirmation" v-slot="{errors, valid, touched}">
                             <b-form-group label="Confirm Password *">
                                 <b-form-input
                                     id="reg-password-confirmation"
                                     type="password"
                                     required
                                     v-model="payload.password_confirmation"
-                                    :state="dirty ? valid : null"
+                                    :state="touched ? valid : null"
                                 ></b-form-input>
                                 <b-form-invalid-feedback id="reg-password-confirmation-live-feedback">{{ errors[0] }}</b-form-invalid-feedback>
                             </b-form-group>
