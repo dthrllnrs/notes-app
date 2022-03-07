@@ -1,5 +1,5 @@
 .note-card {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 
     &:hover {
         transform: scale(1.05);
@@ -14,7 +14,7 @@
     }
 
     & > .card-body {
-        max-height: 140px;
+        max-height: 170px;
         & > .card-title {
             font-size: 1.2em;
             overflow: hidden;

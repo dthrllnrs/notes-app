@@ -8,7 +8,7 @@
             </b-col>
         </b-row>
         <b-row>
-            <b-col cols="12" md="2" v-for="note in notes" :key="note.id" >
+            <b-col cols="12" sm="4" md="3" lg="2" v-for="note in notes" :key="note.id" >
                 <note-card :note="note"></note-card>
             </b-col>
         </b-row>

@@ -1375,7 +1375,7 @@ var render = function () {
         _vm._l(_vm.notes, function (note) {
           return _c(
             "b-col",
-            { key: note.id, attrs: { cols: "12", md: "2" } },
+            { key: note.id, attrs: { cols: "12", sm: "4", md: "3", lg: "2" } },
             [_c("note-card", { attrs: { note: note } })],
             1
           )
