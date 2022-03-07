@@ -35,11 +35,12 @@ const auth_store = {
         },
         async register(context, payload) {
             return new Promise((resolve, reject) => {
-                api.post('/auth/register', payload).then(res => {
-                    resolve(res.data);
-                }).catch(err => {
-                    console.log(err.response);
+                api.post('/auth/register', payload).catch(err => {
+                    console.log(err);
                     reject(err.response);
+                }).then(res => {
+                    console.log({res});
+                    resolve(res.data);
                 })
             })
         },

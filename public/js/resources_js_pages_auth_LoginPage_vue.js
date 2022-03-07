@@ -253,7 +253,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var touched = ref.touched
+                                          var dirty = ref.dirty
                                           return [
                                             _c(
                                               "b-form-group",
@@ -264,9 +264,7 @@ var render = function () {
                                                     required: "",
                                                     type: "email",
                                                     autofocus: "",
-                                                    state: touched
-                                                      ? valid
-                                                      : null,
+                                                    state: dirty ? valid : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.email,

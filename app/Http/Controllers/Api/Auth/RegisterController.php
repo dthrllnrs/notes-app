@@ -26,12 +26,12 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request) {
-        DB::beginTransaction();
         $validated = $request->validate([
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
             'password'  => 'required|min:8|confirmed'
         ]);
+        DB::beginTransaction();
         try {
 
             $user = User::create([

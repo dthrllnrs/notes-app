@@ -17,17 +17,29 @@ if(vuex !== null) {
     }
 }
 
-api.interceptors.response.use(undefined, function (error) {
-    if (error) {
-        const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
+// api.interceptors.response.use(undefined, function (error) {
+//     if (error) {
+//         const originalRequest = error.config;
+//         if (error.response.status === 401 && !originalRequest._retry) {
 
-            originalRequest._retry = true;
-            localStorage.removeItem('vuex');
-            window.location.href = `${app_url}/login`;
-        }
-    }
-})
+//             originalRequest._retry = true;
+//             localStorage.removeItem('vuex');
+//             window.location.href = `${app_url}/login`;
+//         }
+//     }
+// })
+
+api.interceptors.response.use(
+    response => response,
+    error => {
+      const {status} = error.response;
+      if (status === 401) {
+        localStorage.removeItem('vuex');
+        window.location.href = `${app_url}/login`;
+      }
+      return Promise.reject(error);
+   }
+  );
 
 api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 api.defaults.withCredentials = true;

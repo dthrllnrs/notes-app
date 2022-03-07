@@ -114,6 +114,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (err) {
         _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('hideLoading');
+        console.log(err);
 
         if (err.status == 422) {
           _this.$refs.form.setErrors(err.data.errors);
@@ -289,7 +290,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var touched = ref.touched
+                                          var dirty = ref.dirty
                                           return [
                                             _c(
                                               "b-form-group",
@@ -300,9 +301,7 @@ var render = function () {
                                                     id: "reg-name",
                                                     autofocus: "",
                                                     required: "",
-                                                    state: touched
-                                                      ? valid
-                                                      : null,
+                                                    state: dirty ? valid : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.name,
@@ -351,7 +350,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var touched = ref.touched
+                                          var dirty = ref.dirty
                                           return [
                                             _c(
                                               "b-form-group",
@@ -362,9 +361,7 @@ var render = function () {
                                                     id: "reg-email",
                                                     type: "email",
                                                     required: "",
-                                                    state: touched
-                                                      ? valid
-                                                      : null,
+                                                    state: dirty ? valid : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.email,
@@ -414,7 +411,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var touched = ref.touched
+                                          var dirty = ref.dirty
                                           return [
                                             _c(
                                               "b-form-group",
@@ -427,9 +424,7 @@ var render = function () {
                                                     id: "reg-password",
                                                     type: "password",
                                                     required: "",
-                                                    state: touched
-                                                      ? valid
-                                                      : null,
+                                                    state: dirty ? valid : null,
                                                   },
                                                   model: {
                                                     value: _vm.payload.password,
@@ -479,7 +474,7 @@ var render = function () {
                                         fn: function (ref) {
                                           var errors = ref.errors
                                           var valid = ref.valid
-                                          var touched = ref.touched
+                                          var dirty = ref.dirty
                                           return [
                                             _c(
                                               "b-form-group",
@@ -494,9 +489,7 @@ var render = function () {
                                                     id: "reg-password-confirmation",
                                                     type: "password",
                                                     required: "",
-                                                    state: touched
-                                                      ? valid
-                                                      : null,
+                                                    state: dirty ? valid : null,
                                                   },
                                                   model: {
                                                     value:

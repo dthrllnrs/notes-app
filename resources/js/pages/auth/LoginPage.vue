@@ -9,14 +9,14 @@
                 >
                     <validation-observer ref="form" v-slot="{ handleSubmit }">
                         <b-form class="text-left" @submit.prevent="handleSubmit(login)">
-                            <validation-provider name="Email" rules="required|email" v-slot="{errors, valid, touched}">
+                            <validation-provider name="Email" rules="required|email" v-slot="{errors, valid, dirty}">
                                 <b-form-group label="Email *">
                                     <b-form-input
                                         v-model="payload.email"
                                         required
                                         type="email"
                                         autofocus
-                                        :state="touched ? valid : null"
+                                        :state="dirty ? valid : null"
                                     ></b-form-input>
                                     <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
                                 </b-form-group>
