@@ -37,17 +37,20 @@ export default {
     computed: mapState({
         notes: state => state.notes.notes
     }),
-    created() {
+    async created() {
         this.clearNotes();
-        this.fetchNotes();
+        await this.fetchNotes();
+        if(this.notes.length == 0) {
+            this.addNote();
+        }
     },
     methods: {
         clearNotes() {
             this.$store.dispatch('notes/clearNotes');
         },
-        fetchNotes() {
+        async fetchNotes() {
             EventBus.$emit('showLoading');
-            this.$store.dispatch('notes/fetchNotes').catch(err => {
+            await this.$store.dispatch('notes/fetchNotes').catch(err => {
                 this.$bvToast.toast(err.message || 'Error Please try again later.', {
                     title: "Something went wrong.",
                     variant: "danger",
