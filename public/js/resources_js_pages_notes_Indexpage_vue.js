@@ -1191,7 +1191,6 @@ var render = function () {
                         fn: function (ref) {
                           var errors = ref.errors
                           var valid = ref.valid
-                          var dirty = ref.dirty
                           return [
                             _c(
                               "b-form-group",
@@ -1201,7 +1200,7 @@ var render = function () {
                                   attrs: {
                                     autofocus: "",
                                     placeholder: "Enter note title here",
-                                    state: dirty ? valid : null,
+                                    state: valid,
                                   },
                                   model: {
                                     value: _vm.payload.title,
@@ -1236,7 +1235,6 @@ var render = function () {
                         fn: function (ref) {
                           var errors = ref.errors
                           var valid = ref.valid
-                          var dirty = ref.dirty
                           return [
                             _c(
                               "b-form-group",
@@ -1248,7 +1246,7 @@ var render = function () {
                                     required: "",
                                     rows: "3",
                                     "max-rows": "6",
-                                    state: dirty ? valid : null,
+                                    state: valid,
                                   },
                                   model: {
                                     value: _vm.payload.content,
