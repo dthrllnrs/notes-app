@@ -3,7 +3,7 @@
         <b-row>
             <b-col cols="12" md="4" offset-md="4">
                 <b-form-group>
-                    <b-form-input @click="addNote" placeholder="Click here to add note"></b-form-input>
+                    <b-form-input @click="addNote" readonly placeholder="Click here to add note"></b-form-input>
                 </b-form-group>
             </b-col>
         </b-row>
