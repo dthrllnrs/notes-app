@@ -205,12 +205,10 @@ var render = function () {
             {
               attrs: {
                 cols: "12",
-                sm: "7",
-                "offset-sm": "5",
-                md: "6",
-                "offset-md": "6",
-                lg: "4",
-                "offset-lg": "8",
+                sm: "6",
+                "offset-sm": "3",
+                md: "4",
+                "offset-md": "4",
               },
             },
             [

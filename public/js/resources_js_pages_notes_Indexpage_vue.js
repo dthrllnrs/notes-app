@@ -396,11 +396,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../event-bus */ "./resources/js/event-bus.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_notes_NotesCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/notes/NotesCard.vue */ "./resources/js/components/notes/NotesCard.vue");
-/* harmony import */ var _components_notes_NotesModal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/notes/NotesModal.vue */ "./resources/js/components/notes/NotesModal.vue");
-/* harmony import */ var _components_notes_AddNoteModal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/notes/AddNoteModal.vue */ "./resources/js/components/notes/AddNoteModal.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../event-bus */ "./resources/js/event-bus.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_notes_NotesCard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/notes/NotesCard.vue */ "./resources/js/components/notes/NotesCard.vue");
+/* harmony import */ var _components_notes_NotesModal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/notes/NotesModal.vue */ "./resources/js/components/notes/NotesModal.vue");
+/* harmony import */ var _components_notes_AddNoteModal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/notes/AddNoteModal.vue */ "./resources/js/components/notes/AddNoteModal.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -427,39 +435,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    NoteCard: _components_notes_NotesCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    NotesModal: _components_notes_NotesModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AddNoteModal: _components_notes_AddNoteModal_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    NoteCard: _components_notes_NotesCard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    NotesModal: _components_notes_NotesModal_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    AddNoteModal: _components_notes_AddNoteModal_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {};
   },
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapState)({
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)({
     notes: function notes(state) {
       return state.notes.notes;
     }
   }),
   created: function created() {
-    this.clearNotes();
-    this.fetchNotes();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.clearNotes();
+
+              _context.next = 3;
+              return _this.fetchNotes();
+
+            case 3:
+              if (_this.notes.length == 0) {
+                _this.addNote();
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: {
     clearNotes: function clearNotes() {
       this.$store.dispatch('notes/clearNotes');
     },
     fetchNotes: function fetchNotes() {
-      var _this = this;
+      var _this2 = this;
 
-      _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('showLoading');
-      this.$store.dispatch('notes/fetchNotes')["catch"](function (err) {
-        _this.$bvToast.toast(err.message || 'Error Please try again later.', {
-          title: "Something went wrong.",
-          variant: "danger",
-          solid: true
-        });
-      })["finally"](function () {
-        _event_bus__WEBPACK_IMPORTED_MODULE_0__.EventBus.$emit('hideLoading');
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('showLoading');
+                _context2.next = 3;
+                return _this2.$store.dispatch('notes/fetchNotes')["catch"](function (err) {
+                  _this2.$bvToast.toast(err.message || 'Error Please try again later.', {
+                    title: "Something went wrong.",
+                    variant: "danger",
+                    solid: true
+                  });
+                })["finally"](function () {
+                  _event_bus__WEBPACK_IMPORTED_MODULE_1__.EventBus.$emit('hideLoading');
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     addNote: function addNote() {
       this.$bvModal.show("add-note-modal");
